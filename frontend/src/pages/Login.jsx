@@ -18,7 +18,7 @@ const posters = [
   "https://image.tmdb.org/t/p/w500//7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",  // Parasite
   "https://image.tmdb.org/t/p/w500/4nbvLoPDftqXV14w5Mv14iqgVrt.jpg",  // Gangs of Wasseypur
   "https://image.tmdb.org/t/p/w500/hKO9O715wYxjkQSEv47giCYcyO8.jpg",  // 3 Idiots
-  "https://image.tmdb.org/t/p/w500/tk1h0lXd0WkrVo4BC36sOO3gi9P.jpg",  // Tumbbad
+  "https://image.tmdb.org/t/p/w500/snBOuXDdhmTvlzMUvP9Em3Pp1u1.jpg", // Dhurandhar
 ]
   
 
@@ -93,7 +93,7 @@ const Login = () => {
         {/* Right side — form */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 md:px-16">
           <div className="mb-8">
-            <h1 className="text-yellow-400 text-3xl font-bold mb-8">Cinestra</h1>
+            <h1 className="text-yellow-400 text-4xl font-bold mb-8">cinestra</h1>
             <h2 className="text-white text-4xl font-bold mb-2">Welcome back</h2>
             <p className="text-gray-400">Your cinematic journey continues here.</p>
           </div>
