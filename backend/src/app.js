@@ -1,5 +1,6 @@
 const express = require('express')
 const cookieParse = require('cookie-parser')
+const cors = require('cors')
 const authRoutes = require('./routes/auth.routes')
 const movieRoutes = require('./routes/movie.routes')
 const watchlistRoutes = require('./routes/watchlist.routes')
@@ -8,6 +9,12 @@ const reviewRoutes = require('./routes/review.routes')
 const adminRoutes = require('./routes/admin.routes')
 
 const app = express()
+
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}))
+
 app.use(express.json())
 app.use(cookieParse())
 
