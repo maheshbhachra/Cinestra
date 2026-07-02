@@ -4,6 +4,8 @@ const movieController = require('../controllers/movie.controller')
 
 router.get("/search", movieController.searchMovies)
 
+router.get("/popular", movieController.getPopularMovies)
+
 router.get("/:tmdbId", movieController.getMovieDetails);    
 
 module.exports = router

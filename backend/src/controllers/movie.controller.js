@@ -50,4 +50,20 @@ const getMovieDetails = async (req, res) => {
   }
 };
 
-module.exports = { searchMovies, getMovieDetails }
+const getPopularMovies = async (req, res) => {
+  try {
+    const response = await axios.get(`${process.env.TMDB_BASE_URL}/movie/popular`, {
+      params: {
+        api_key: process.env.TMDB_API_KEY,
+        page: 1,
+      },
+    })
+    res.status(200).json(response.data.results)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+module.exports = { searchMovies, getMovieDetails, getPopularMovies }
+
+module.exports = { searchMovies, getMovieDetails, getPopularMovies }
