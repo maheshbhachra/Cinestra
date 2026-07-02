@@ -87,7 +87,7 @@ const Home = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
             onFocus={() => searchResults.length > 0 && setShowDropdown(true)}
-            className="w-full bg-[#1a1a1a] text-white border border-gray-800 rounded-full px-5 py-2 text-sm focus:outline-none focus:border-yellow-400 transition"
+            className="w-full bg-[#1a1a1a] text-white border border-gray-800 rounded-full px-5 py-2 text-lg focus:outline-none focus:border-yellow-400 transition"
           />
 
           {/* Search dropdown */}
@@ -123,14 +123,14 @@ const Home = () => {
         {/* User */}
         <div className="flex items-center gap-4">
           <span
-            className="text-yellow-300 text-md cursor-pointer hover:text-white transition"
+            className="text-yellow-300 text-lg cursor-pointer hover:text-white transition"
             onClick={() => navigate("/profile")}
           >
             {user?.username}
           </span>
           <button
             onClick={handleLogout}
-            className="text-gray-500 text-sm hover:text-white transition cursor-pointer"
+            className="text-gray-500 text-md hover:text-white transition cursor-pointer"
           >
             Logout
           </button>
@@ -140,8 +140,8 @@ const Home = () => {
       {/* Main content */}
       <div className="pt-24 px-8 max-w-7xl mx-auto">
         <div className="mb-8">
-          <h2 className="text-3xl font-black mb-1">Popular Movies</h2>
-          <p className="text-gray-500 text-sm">Trending globally right now</p>
+          <h2 className="text-4xl font-black mb-1">Popular Movies</h2>
+          <p className="text-gray-500 text-md">Trending globally right now</p>
         </div>
 
         {loading ? (
@@ -176,6 +176,19 @@ const Home = () => {
           </div>
         )}
       </div>
+
+         {/* Footer */}
+        <footer className="border-t border-gray-900 py-10 text-center text-gray-600 text-sm mt-60">
+          <h2 className="text-yellow-400 text-3xl font-bold mb-4">cinestra</h2>
+          <div className="flex justify-center gap-6 mb-4">
+            <span className="hover:text-gray-400 cursor-pointer">About</span>
+            <span className="hover:text-gray-400 cursor-pointer">Terms</span>
+            <span className="hover:text-gray-400 cursor-pointer">Privacy</span>
+            <span className="hover:text-gray-400 cursor-pointer">Contact</span>
+          </div>
+          <p>© 2026 Cinestra. All rights reserved.</p>
+        </footer>
+
     </div>
   )
 }

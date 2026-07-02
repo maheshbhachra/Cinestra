@@ -84,7 +84,7 @@ const Landing = () => {
           </div>
 
           {/* Dark overlay */}
-          <div className="absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 bg-black/10" />
 
           {/* Hero text */}
           <div className="relative z-10 text-center px-4">
