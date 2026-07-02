@@ -65,6 +65,4 @@ const getPopularMovies = async (req, res) => {
   }
 }
 
-module.exports = { searchMovies, getMovieDetails, getPopularMovies }
-
-module.exports = { searchMovies, getMovieDetails, getPopularMovies }
+module.exports = { searchMovies, getMovieDetails, getPopularMovies}

@@ -6,8 +6,8 @@ import api from "../utils/axios"
 const ratingTiers = [
   { value: "masterpiece", label: "Masterpiece", color: "bg-yellow-500 text-black" },
   { value: "must_watch", label: "Must Watch", color: "bg-green-400 text-black" },
-  { value: "timepass", label: "Timepass", color: "bg-slate-400 text-white" },
-  { value: "skip", label: "Skip", color: "bg-red-400 text-white" },
+  { value: "timepass", label: "Timepass", color: "bg-slate-400 text-black" },
+  { value: "skip", label: "Skip", color: "bg-red-400 text-black" },
 ]
 
 const MovieDetail = () => {

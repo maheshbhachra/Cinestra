@@ -9,11 +9,13 @@ const Home = () => {
   const [searchResults, setSearchResults] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
   const [loading, setLoading] = useState(true)
-  const { user, logout } = useAuth()
+  const { user, logout, loading: authLoading } = useAuth()
   const navigate = useNavigate()
 
   // fetch popular movies on mount
   useEffect(() => {
+    if (authLoading) return // wait for auth to finish first
+
     const fetchPopular = async () => {
       try {
         const res = await api.get("/movies/popular")
@@ -25,7 +27,7 @@ const Home = () => {
       }
     }
     fetchPopular()
-  }, [])
+  }, [authLoading])
 
   // search with debounce
   useEffect(() => {
@@ -55,6 +57,14 @@ const Home = () => {
     setShowDropdown(false)
     setSearchQuery("")
     navigate(`/movie/${tmdbId}`)
+  }
+
+  if (authLoading || loading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <p className="text-gray-600 text-sm">Loading...</p>
+      </div>
+    )
   }
 
   return (
