@@ -5,12 +5,16 @@ const {
     addReview,
     updateReview,
     deleteReview,
-    getMovieReviews
+    getMovieReviews,
+    getMyReviews
 } = require('../controllers/review.controller')
 
+router.get("/user/me", authUser, getMyReviews)
+router.get('/movie/:movieId', getMovieReviews)
 router.post('/', authUser, addReview)
 router.put('/:id', authUser, updateReview)
 router.delete('/:id', authUser, deleteReview)
-router.get('/movie/:movieId', getMovieReviews)
+
+
 
 module.exports = router

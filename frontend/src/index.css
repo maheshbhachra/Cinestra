@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+  background-color: black;
+}
+
 ::-webkit-scrollbar {
     width: 5px;
 }

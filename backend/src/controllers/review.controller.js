@@ -1,4 +1,5 @@
 const reviewModel = require('../models/review.model')
+const movieModel = require('../models/movie.model')
 
 const addReview = async (req,res) => {
     try{
@@ -64,20 +65,54 @@ const deleteReview = async (req, res) => {
     }
 }
 
-const getMovieReviews = async (req,res) =>{
-    try{
-        const { movieId } = req.params
+// const getMovieReviews = async (req,res) =>{
+//     try{
+//         const { movieId } = req.params
 
-        const reviews = await reviewModel
-            .find({movie: movieId, status: "active"})
-            .populate("user" , "username")
-            .sort({ createdAt: -1 })
+//         const reviews = await reviewModel
+//             .find({movie: movieId, status: "active"})
+//             .populate("user" , "username")
+//             .sort({ createdAt: -1 })
 
-        res.status(200).json(reviews)
-    }catch(error){
-        res.status(500).json({message: error.message})
+//         res.status(200).json(reviews)
+//     }catch(error){
+//         res.status(500).json({message: error.message})
+//     }
+// }
+
+const getMovieReviews = async (req, res) => {
+  try {
+    const { movieId } = req.params
+
+    // movieId here is actually tmdbId from the URL
+    const movie = await movieModel.findOne({ tmdbId: movieId })
+
+    if (!movie) {
+      return res.status(200).json([]) // no movie cached = no reviews
     }
+
+    const reviews = await reviewModel
+      .find({ movie: movie._id, status: "active" })
+      .populate("user", "username")
+      .sort({ createdAt: -1 })
+
+    res.status(200).json(reviews)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+const getMyReviews = async (req, res) => {
+  try {
+    const reviews = await reviewModel
+      .find({ user: req.user._id })
+      .populate("movie", "title posterPath tmdbId")
+      .sort({ createdAt: -1 })
+    res.status(200).json(reviews)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
 }
 
 
-module.exports = { addReview, updateReview, deleteReview, getMovieReviews}
+module.exports = { addReview, updateReview, deleteReview, getMovieReviews, getMyReviews}

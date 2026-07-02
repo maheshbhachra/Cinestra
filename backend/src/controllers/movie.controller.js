@@ -38,6 +38,7 @@ const getMovieDetails = async (req, res) => {
         tmdbId: data.id,
         title: data.title,
         posterPath: data.poster_path,
+        backdropPath: data.backdrop_path,
         overview: data.overview,
         releaseDate: data.release_date,
         genres: data.genres.map((g) => g.name),

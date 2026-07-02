@@ -4,6 +4,8 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Landing from './pages/Landing'
 import Home from './pages/Home'
+import MovieDetail from './pages/MovieDetail'
+import Profile from './pages/Profile'
 
 const App = () => {
   return (
@@ -12,6 +14,8 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/movie/:tmdbId" element={<MovieDetail />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   )
 }

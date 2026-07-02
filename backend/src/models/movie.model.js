@@ -11,6 +11,7 @@ const movieSchema = mongoose.Schema({
     overview: String,
     releaseDate: String,
     genres: [String],
+    backdropPath: String,
   },
   { timestamps: true }
 )
