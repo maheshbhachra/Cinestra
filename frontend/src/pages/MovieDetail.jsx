@@ -2,11 +2,12 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import api from "../utils/axios"
+import confetti from "canvas-confetti";
 
 const ratingTiers = [
   { value: "masterpiece", label: "Masterpiece", color: "bg-yellow-500 text-black" },
   { value: "must_watch", label: "Must Watch", color: "bg-green-400 text-black" },
-  { value: "timepass", label: "Timepass", color: "bg-slate-400 text-black" },
+  { value: "timepass", label: "Timepass", color: "bg-teal-500 text-black" },
   { value: "skip", label: "Skip", color: "bg-red-400 text-black" },
 ]
 
@@ -24,6 +25,25 @@ const MovieDetail = () => {
   const [diaryMsg, setDiaryMsg] = useState("")
   const [reviewMsg, setReviewMsg] = useState("")
   const [loading, setLoading] = useState(true)
+
+  const fireMasterpieceConfetti = () => {
+  confetti({
+    particleCount: 60,
+    spread: 65,
+    startVelocity: 40,
+    scalar: 1.2,
+    gravity: 0.8,
+    origin: {
+      x: 0.5,
+      y: 0.6,
+    },
+    colors: [
+      "#FACC15",
+      "#F59E0B",
+      "#FFFFFF",
+    ],
+  });
+};
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -171,18 +191,18 @@ const MovieDetail = () => {
 
           {/* Details */}
           <div className="flex-1 pt-20">
-            <h1 className="text-4xl font-black mb-2">{movie.title}</h1>
+            <h1 className="text-5xl font-black mb-2">{movie.title}</h1>
             <div className="flex items-center gap-3 mb-4">
-              <span className="text-gray-400 text-sm">{movie.releaseDate?.split("-")[0]}</span>
+              <span className="text-gray-400 text-md">{movie.releaseDate?.split("-")[0]}</span>
               <div className="flex gap-2 flex-wrap">
                 {movie.genres?.map((g) => (
-                  <span key={g} className="text-xs text-gray-400 border border-gray-700 px-2 py-1 rounded-full">
+                  <span key={g} className="text-sm mt-1 text-gray-400 border border-gray-700 px-2 py-1 rounded-full">
                     {g}
                   </span>
                 ))}
               </div>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-2xl mb-6">
+            <p className="text-gray-400 text-md leading-relaxed max-w-2xl mb-6">
               {movie.overview}
             </p>
 
@@ -190,13 +210,13 @@ const MovieDetail = () => {
             <div className="flex gap-3 flex-wrap">
               <button
                 onClick={handleAddToWatchlist}
-                className="border border-gray-600 text-white text-sm px-5 py-2 rounded-full hover:border-yellow-400 hover:text-yellow-400 transition cursor-pointer"
+                className="border border-gray-600 text-white text-md px-5 py-2 rounded-full hover:border-yellow-400 hover:text-yellow-400 transition cursor-pointer"
               >
                 + Add to Watchlist
               </button>
               <button
                 onClick={handleLogDiary}
-                className="border border-gray-600 text-white text-sm px-5 py-2 rounded-full hover:border-yellow-400 hover:text-yellow-400 transition cursor-pointer"
+                className="border border-gray-600 text-white text-md px-5 py-2 rounded-full hover:border-yellow-400 hover:text-yellow-400 transition cursor-pointer"
               >
                 📖 Log in Diary
               </button>
@@ -215,7 +235,11 @@ const MovieDetail = () => {
             {ratingTiers.map((tier) => (
               <button
                 key={tier.value}
-                onClick={() => setSelectedTier(tier.value)}
+                onClick={() => { setSelectedTier(tier.value)
+                    if (selectedTier !== "masterpiece" && tier.value === "masterpiece") {
+                      fireMasterpieceConfetti();
+                    }
+                }}
                 className={`px-5 py-2 rounded-full text-sm font-bold transition cursor-pointer border-2 ${
                   selectedTier === tier.value
                     ? `${tier.color} border-transparent scale-105`
@@ -245,7 +269,7 @@ const MovieDetail = () => {
           <button
             onClick={handleSubmitReview}
             disabled={submitting}
-            className="mt-4 bg-white text-black font-bold px-8 py-3 rounded-full hover:bg-yellow-300 transition disabled:opacity-50 cursor-pointer text-sm"
+            className="mt-4 bg-white text-black font-bold px-8 py-3 rounded-full hover:bg-gray-300 transition disabled:opacity-50 cursor-pointer text-sm"
           >
             {submitting ? "Submitting..." : "Submit Review"}
           </button>

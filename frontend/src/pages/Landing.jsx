@@ -95,7 +95,7 @@ const Landing = () => {
             </h1>
             <p className="text-gray-400 text-xl mb-10 max-w-xl mx-auto">
               The cinematic diary for those who live through the lens. Rate,
-              review, and discover your next masterpiece.
+              review, and discover your next <span className="text-yellow-400 font-bold">masterpiece</span>.
             </p>
             <div className="flex items-center justify-center gap-4">
               <Link
@@ -144,7 +144,7 @@ const Landing = () => {
                 {/* Floating rating pills */}
                 <span className="absolute top-0 right-18 bg-red-400 text-black text-md font-bold px-4 py-2 rounded-full shadow-lg">Skip</span>
                 <span className="absolute top-16 left-4 bg-green-400 text-black text-md font-bold px-4 py-2 rounded-full shadow-lg">Must Watch</span>
-                <span className="absolute bottom-25 right-9 bg-slate-400 text-black text-md font-bold px-4 py-2 rounded-full shadow-lg">Timepass</span>
+                <span className="absolute bottom-25 right-9 bg-teal-500 text-black text-md font-bold px-4 py-2 rounded-full shadow-lg">Timepass</span>
                 <span className="absolute bottom-0 left-4 bg-yellow-500 text-black text-md font-bold px-4 py-2 rounded-full shadow-lg">Masterpiece</span>
         </div>
     </div>

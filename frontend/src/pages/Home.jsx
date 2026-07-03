@@ -178,7 +178,7 @@ const Home = () => {
       </div>
 
          {/* Footer */}
-        <footer className="border-t border-gray-900 py-10 text-center text-gray-600 text-sm mt-60">
+        <footer className="border-t border-gray-900 py-10 text-center text-gray-600 text-sm mt-50">
           <h2 className="text-yellow-400 text-3xl font-bold mb-4">cinestra</h2>
           <div className="flex justify-center gap-6 mb-4">
             <span className="hover:text-gray-400 cursor-pointer">About</span>
