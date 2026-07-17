@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import api from "../utils/axios"
-import confetti from "canvas-confetti";
+import SparkleEffect from "../components/SparkleEffect";
 
 const ratingTiers = [
   { value: "masterpiece", label: "Masterpiece", color: "bg-yellow-500 text-black" },
@@ -25,25 +25,8 @@ const MovieDetail = () => {
   const [diaryMsg, setDiaryMsg] = useState("")
   const [reviewMsg, setReviewMsg] = useState("")
   const [loading, setLoading] = useState(true)
+  const [sparkleTrigger, setSparkleTrigger] = useState(0)
 
-  const fireMasterpieceConfetti = () => {
-  confetti({
-    particleCount: 60,
-    spread: 65,
-    startVelocity: 40,
-    scalar: 1.2,
-    gravity: 0.8,
-    origin: {
-      x: 0.5,
-      y: 0.6,
-    },
-    colors: [
-      "#FACC15",
-      "#F59E0B",
-      "#FFFFFF",
-    ],
-  });
-};
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -237,16 +220,17 @@ const MovieDetail = () => {
                 key={tier.value}
                 onClick={() => { setSelectedTier(tier.value)
                     if (selectedTier !== "masterpiece" && tier.value === "masterpiece") {
-                      fireMasterpieceConfetti();
+                        setSparkleTrigger(prev => prev + 1)
                     }
                 }}
-                className={`px-5 py-2 rounded-full text-sm font-bold transition cursor-pointer border-2 ${
+                className={`relative px-5 py-2 rounded-full text-sm font-bold transition cursor-pointer border-2 ${
                   selectedTier === tier.value
                     ? `${tier.color} border-transparent scale-105`
                     : "bg-transparent border-gray-700 text-gray-400 hover:border-gray-500"
                 }`}
               >
                 {tier.label}
+                {tier.value === "masterpiece" && <SparkleEffect trigger={sparkleTrigger} />}
               </button>
             ))}
           </div>
